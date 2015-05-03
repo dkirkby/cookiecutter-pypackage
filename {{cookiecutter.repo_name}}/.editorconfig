@@ -1,5 +1,8 @@
 # http://editorconfig.org
 
+# SublimeText users will need to install the EditConfig package to benefit from this.
+# https://github.com/sindresorhus/editorconfig-sublime
+
 root = true
 
 [*]
