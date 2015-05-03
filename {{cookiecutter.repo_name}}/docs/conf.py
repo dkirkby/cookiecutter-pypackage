@@ -16,6 +16,30 @@
 import sys
 import os
 
+# on_rtd is whether we are on readthedocs.org, this line of code grabbed from docs.readthedocs.org
+on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
+
+from mock import Mock as MagicMock
+
+class Mock(MagicMock):
+    @classmethod
+    def __getattr__(cls, name):
+        return Mock()
+    def __mul__(self, other):
+        return Mock()
+    def __rmul__(self, other):
+        return Mock()
+    def __pow__(self, other):
+        return Mock()
+    def __div__(self, other):
+        return Mock()
+
+MOCK_MODULES = [
+    'numpy',
+]
+if on_rtd:
+    sys.modules.update((mod_name, Mock()) for mod_name in MOCK_MODULES)
+
 # If extensions (or modules to document with autodoc) are in another
 # directory, add these directories to sys.path here. If the directory is
 # relative to the documentation root, use os.path.abspath to make it
@@ -40,7 +64,12 @@ import {{ cookiecutter.repo_name }}
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.autodoc', 'sphinx.ext.viewcode']
+extensions = [
+    'sphinx.ext.autodoc',
+    'sphinx.ext.intersphinx',
+    'sphinx.ext.linkcode',
+    'sphinx.ext.napoleon',
+]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -109,9 +138,11 @@ pygments_style = 'sphinx'
 
 # -- Options for HTML output -------------------------------------------
 
-# The theme to use for HTML and HTML Help pages.  See the documentation for
-# a list of builtin themes.
-html_theme = 'default'
+if not on_rtd:
+    html_theme = 'sphinxdoc'
+else:
+    # RTD has its own theme.
+    html_theme = 'default'
 
 # Theme options are theme-specific and customize the look and feel of a
 # theme further.  For a list of options available for each theme, see the
@@ -273,3 +304,64 @@ texinfo_documents = [
 
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #texinfo_no_detailmenu = False
+
+# -- Source code links to github ------------------------------------------
+
+# Adapted from the scipy implementation in
+# https://github.com/scipy/scipy/blob/v0.14.0/doc/source/conf.py
+# Also need to add 'sphinx.ext.linkcode' to extensions above.
+
+import inspect
+from os.path import relpath, dirname
+
+import {{ cookiecutter.project_name }} # for the relpath below
+
+def linkcode_resolve(domain, info):
+    """
+    Determine the URL corresponding to Python object
+    """
+    if domain != 'py':
+        return None
+
+    modname = info['module']
+    fullname = info['fullname']
+
+    submod = sys.modules.get(modname)
+    if submod is None:
+        return None
+
+    obj = submod
+    for part in fullname.split('.'):
+        try:
+            obj = getattr(obj, part)
+        except:
+            return None
+
+    try:
+        fn = inspect.getsourcefile(obj)
+    except:
+        fn = None
+    if not fn:
+        try:
+            fn = inspect.getsourcefile(sys.modules[obj.__module__])
+        except:
+            fn = None
+    if not fn:
+        return None
+
+    try:
+        source, lineno = inspect.findsource(obj)
+    except:
+        lineno = None
+
+    if lineno:
+        linespec = "#L%d" % (lineno + 1)
+    else:
+        linespec = ""
+
+    fn = relpath(fn, start=dirname(descwl.__file__))
+
+    # Could use version,release declared above here but for now we
+    # just link to the latest code on the master branch.
+    github = 'https://github.com/{{ cookiecutter.repo_name }}/{{ cookiecutter.repo_name }}'
+    return '%s/blob/master/{{ cookiecutter.github_username }}/%s%s' % (github,fn,linespec)
