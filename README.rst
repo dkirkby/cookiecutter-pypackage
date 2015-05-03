@@ -8,10 +8,13 @@ Based on https://github.com/audreyr/cookiecutter-pypackage.git, with the followi
 
 * Remove support of python 3.x and PyPy.
 * Change license from BSD to MIT.
+* Customize sphinx:
+  * Use napoleon to support google/numpy-style docstrings.
+  * Enable linkcode and add glue code for links to github master.
+  * Add boilerplate for mocking out packages that ReadTheDocs can ignore.
 
 TODO:
 
-* Use google/numpy sphinx format.
 * Add sphinx badge to README.
 * from future imports
 

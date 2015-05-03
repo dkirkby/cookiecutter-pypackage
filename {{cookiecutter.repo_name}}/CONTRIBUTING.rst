@@ -38,7 +38,7 @@ Write Documentation
 
 {{ cookiecutter.project_name }} could always use more documentation, whether as part of the
 official {{ cookiecutter.project_name }} docs, in docstrings, or even on the web in blog posts,
-articles, and such.
+articles, and such.  We use the sphinx napolean extension to support google and numpy-style docstrings (http://sphinx-doc.org/latest/ext/napoleon.html).
 
 Submit Feedback
 ~~~~~~~~~~~~~~~
