@@ -16,7 +16,14 @@ Based on https://github.com/audreyr/cookiecutter-pypackage.git, with the followi
 TODO:
 
 * Add sphinx badge to README.
-* from future imports
+* add scripts (or at least checklists in contributing.rst) to:
+  * create a new module file (inlcuding adding it sphinx, unit tests, etc)
+  * update the version number
+  * add a new dependency (sphinx mocks, requirements.txt, setup.py, installation.rst)
+  * publish a new release (https://gist.github.com/audreyr/5990987)
+* 2to3 strategy? (from future imports, 2to3, https://pythonhosted.org/six/)
+* Update installation instructions (see notes there)
+* Use py.test
 
 Usage
 -----
