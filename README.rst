@@ -28,14 +28,20 @@ TODO:
 Usage
 -----
 
-Generate a Python package project::
+Generate a Python package project. This step will create a new subdirectory using the project name you provide, so run it from the parent directory::
 
+	cd <parent>
     cookiecutter https://github.com/dkirkby/cookiecutter-pypackage.git
+    cd <package>
 
-Then:
+Start a git repo::
 
-* Create a repo and put it there.
-* Add the repo to your Travis CI account.
+	git init
+	git add .
+	git commit -m 'cookiecutter https://github.com/dkirkby/cookiecutter-pypackage.git'
+
+* Create a `new github repo <https://github.com/new>`_ and link it to your local repo. Leave the options to add a default README, .gitignore, or license file unchecked since these are already included in the template.
+* Add the new repo to your `Travis CI <https://travis-ci.org>`_ profile page (click the SYNC button if your new repo is not already listed).
 * Add the repo to your ReadTheDocs account + turn on the ReadTheDocs service hook.
 * Release your package the standard Python way. Here's a release checklist: https://gist.github.com/audreyr/5990987
 
