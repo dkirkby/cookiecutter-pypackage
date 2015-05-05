@@ -40,6 +40,13 @@ Write Documentation
 official {{ cookiecutter.project_name }} docs, in docstrings, or even on the web in blog posts,
 articles, and such.  We use the sphinx `napolean extension <http://sphinx-doc.org/latest/ext/napoleon.html>`_ to support google and numpy-style docstrings in the python code and `RST markup <http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html>`_ for pages like this.
 
+Documentation is hosted at https://{{ cookiecutter.repo_name }}.readthedocs.org and is automatically updated after each commit to the github repo. You can also build the docs locally using::
+
+    cd docs
+    make html
+
+To view the most recent local build of the HTML documentation, point your browser to `.../docs/_build/html/index.html`.
+
 Submit Feedback
 ~~~~~~~~~~~~~~~
 

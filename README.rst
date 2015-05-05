@@ -42,7 +42,7 @@ Start a git repo::
 
 * Create a `new github repo <https://github.com/new>`_ and link it to your local repo. Leave the options to add a default README, .gitignore, or license file unchecked since these are already included in the template.
 * Add the new repo to your `Travis CI <https://travis-ci.org>`_ profile page (click the SYNC button if your new repo is not already listed).
-* Add the repo to your ReadTheDocs account + turn on the ReadTheDocs service hook.
+* `Import the new repo <https://readthedocs.org/dashboard/import/?>`_ from your ReadTheDocs account (you will probably need to resync with github first).
 * Release your package the standard Python way. Here's a release checklist: https://gist.github.com/audreyr/5990987
 
 References
