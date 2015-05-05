@@ -35,6 +35,11 @@ setup(
     ],
     package_dir={'{{ cookiecutter.repo_name }}':
                  '{{ cookiecutter.repo_name }}'},
+    scripts = [
+        # TODO: list installable scripts here, which should start with #!/usr/bin/env python
+        # bin/myscript1,
+        # bin/myscript2
+    ],
     include_package_data=True,
     install_requires=requirements,
     license="MIT",
