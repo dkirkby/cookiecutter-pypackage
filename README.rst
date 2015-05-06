@@ -15,7 +15,6 @@ Based on https://github.com/audreyr/cookiecutter-pypackage.git, with the followi
 
 TODO:
 
-* Add sphinx badge to README.
 * add scripts (or at least checklists in contributing.rst) to:
   * create a new module file (inlcuding adding it sphinx, unit tests, etc)
   * update the version number
