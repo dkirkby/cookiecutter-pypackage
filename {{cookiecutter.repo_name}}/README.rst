@@ -15,7 +15,8 @@
 {{ cookiecutter.project_short_description}}
 
 * Free software: MIT license
-* Documentation: https://{{ cookiecutter.repo_name }}.readthedocs.org.
+* Documentation: https://{{ cookiecutter.repo_name }}.readthedocs.org
+* Code: https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.repo_name }}
 
 Features
 --------
